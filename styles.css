@@ -1,0 +1,336 @@
+/* Vietnam trip plans — shared styles
+   Palette drawn from Hanoi's streets: colonial ochre walls, green shutters,
+   blue enamel street signs, lacquer red. */
+
+:root {
+  --plaster: #f6edda;
+  --ochre: #e4a62f;
+  --ochre-deep: #b98418;
+  --enamel: #1d4e9e;
+  --shutter: #2f5b3d;
+  --lacquer: #b23a20;
+  --ink: #23201a;
+  --ink-soft: #55503f;
+  --line: rgba(35, 32, 26, 0.16);
+  --sign-radius: 10px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+body {
+  background: var(--plaster);
+  color: var(--ink);
+  font-family: "Be Vietnam Pro", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.display {
+  font-family: "Anton", "Be Vietnam Pro", sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+}
+
+.mono {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+}
+
+a { color: var(--enamel); text-underline-offset: 3px; }
+a:hover { color: var(--lacquer); }
+:focus-visible {
+  outline: 3px solid var(--enamel);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+  background: var(--ochre);
+  color: var(--ink);
+  padding: clamp(3rem, 8vw, 6rem) 1.5rem clamp(2.5rem, 6vw, 4.5rem);
+  border-bottom: 12px solid var(--shutter);
+  position: relative;
+}
+/* painted shutter slats along the hero's bottom edge */
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -12px;
+  height: 12px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--shutter) 0 26px,
+    #24472f 26px 30px
+  );
+}
+.hero-inner { max-width: 60rem; margin: 0 auto; }
+
+.eyebrow {
+  display: inline-block;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: 1.5px solid var(--ink);
+  padding: 0.3rem 0.7rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 11vw, 7.5rem);
+  color: var(--ink);
+}
+.hero h1 .accent { color: #fdf6e3; text-shadow: 3px 3px 0 var(--lacquer); }
+
+.hero .standfirst {
+  max-width: 34rem;
+  margin-top: 1.4rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #453a1c;
+}
+
+.factstrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 2rem;
+  list-style: none;
+}
+.factstrip li {
+  background: var(--plaster);
+  border: 1.5px solid var(--ink);
+  padding: 0.35rem 0.75rem;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.78rem;
+  box-shadow: 3px 3px 0 rgba(35, 32, 26, 0.35);
+}
+
+/* ---------- layout ---------- */
+
+main { max-width: 60rem; margin: 0 auto; padding: 0 1.5rem 4rem; }
+
+section { padding-top: clamp(3rem, 7vw, 4.5rem); }
+
+/* ---------- enamel street-sign headers (the signature) ---------- */
+
+.sign {
+  display: inline-block;
+  background: var(--enamel);
+  color: #fff;
+  border-radius: var(--sign-radius);
+  padding: 0.55rem 1.4rem 0.7rem;
+  box-shadow:
+    inset 0 0 0 3px var(--enamel),
+    inset 0 0 0 5px #fff,
+    4px 5px 0 rgba(35, 32, 26, 0.25);
+  margin-bottom: 1.6rem;
+}
+.sign .street {
+  font-family: "Anton", sans-serif;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  display: block;
+}
+.sign .gloss {
+  display: block;
+  font-size: 0.72rem;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-top: 0.1rem;
+}
+
+/* ---------- content blocks ---------- */
+
+.spots { list-style: none; }
+.spots li {
+  padding: 1rem 0 1.1rem;
+  border-bottom: 1px solid var(--line);
+}
+.spots li:last-child { border-bottom: none; }
+.spots .name { font-weight: 600; }
+.spots .vn { color: var(--ink-soft); font-weight: 400; }
+.spots p { color: var(--ink-soft); font-size: 0.95rem; margin-top: 0.15rem; }
+
+.price {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: var(--lacquer);
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  padding: 0.1rem 0.6rem;
+  white-space: nowrap;
+  vertical-align: 2px;
+  margin-left: 0.5rem;
+}
+.price.free { color: var(--shutter); }
+
+.tip {
+  background: rgba(228, 166, 47, 0.16);
+  border-left: 4px solid var(--ochre-deep);
+  padding: 0.9rem 1.1rem;
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+}
+.tip strong { color: var(--ink); }
+
+/* stay tiers */
+.tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.tier {
+  border: 1.5px solid var(--ink);
+  padding: 1.1rem 1.2rem 1.3rem;
+  background: #fffdf6;
+  box-shadow: 4px 4px 0 rgba(35, 32, 26, 0.15);
+}
+.tier h3 {
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 1.05rem;
+  letter-spacing: 0.05em;
+}
+.tier .rate {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.9rem;
+  color: var(--lacquer);
+  display: block;
+  margin: 0.4rem 0 0.5rem;
+}
+.tier p { font-size: 0.88rem; color: var(--ink-soft); }
+@media (max-width: 44rem) { .tiers { grid-template-columns: 1fr; } }
+
+/* day-trip timeline — this content IS a sequence */
+.timeline { list-style: none; margin-top: 0.5rem; }
+.timeline li {
+  position: relative;
+  padding: 0 0 1.4rem 2.2rem;
+  border-left: 3px solid var(--shutter);
+  margin-left: 0.5rem;
+}
+.timeline li:last-child { border-left-color: transparent; padding-bottom: 0; }
+.timeline li::before {
+  content: "";
+  position: absolute;
+  left: -9.5px; top: 0.35rem;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--plaster);
+  border: 3px solid var(--shutter);
+}
+.timeline .when {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--shutter);
+  display: block;
+}
+.timeline .what { font-weight: 600; }
+.timeline p { color: var(--ink-soft); font-size: 0.95rem; }
+
+/* videos */
+.videos { list-style: none; display: grid; gap: 0.8rem; }
+.videos a {
+  display: block;
+  border: 1.5px solid var(--ink);
+  background: #fffdf6;
+  padding: 0.9rem 1.1rem;
+  text-decoration: none;
+  color: var(--ink);
+  box-shadow: 4px 4px 0 rgba(35, 32, 26, 0.15);
+}
+.videos a:hover { background: rgba(228, 166, 47, 0.18); color: var(--ink); }
+.videos .vtitle { font-weight: 600; }
+.videos .vurl {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  color: var(--enamel);
+  word-break: break-all;
+}
+
+/* note */
+.note {
+  border: 2px dashed var(--lacquer);
+  padding: 1.3rem 1.5rem;
+  background: rgba(178, 58, 32, 0.05);
+  font-size: 0.98rem;
+}
+.note .who {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--lacquer);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+/* ---------- index: the claim board ---------- */
+
+.board { list-style: none; display: grid; gap: 0.9rem; margin-top: 0.5rem; }
+
+.slot {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  border: 1.5px solid var(--line);
+  padding: 1rem 1.2rem;
+  color: var(--ink-soft);
+}
+.slot .stop {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  min-width: 6.5rem;
+}
+.slot .city { font-weight: 600; color: var(--ink); }
+.slot .status {
+  margin-left: auto;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.slot.open { border-style: dashed; }
+.slot.open .status { color: var(--ink-soft); }
+.slot.claimed .status { color: var(--ochre-deep); }
+
+.slot.live {
+  border: 1.5px solid var(--ink);
+  background: #fffdf6;
+  box-shadow: 4px 4px 0 rgba(35, 32, 26, 0.15);
+}
+.slot.live .status { color: var(--shutter); }
+.slot.live a {
+  color: var(--ink);
+  text-decoration-color: var(--ochre-deep);
+  text-decoration-thickness: 2px;
+}
+.slot.live a:hover { color: var(--lacquer); }
+
+/* ---------- footer ---------- */
+
+footer {
+  border-top: 1px solid var(--line);
+  margin-top: 2rem;
+  padding: 1.6rem 1.5rem 2.5rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
